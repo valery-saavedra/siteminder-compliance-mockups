@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Guest Engagement · Kit de registro de viajeros (España)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600&family=Lora:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* Tokens Little Hotelier. Fuente: output/00-brand-notes.md */
+  :root{
+    --lh-ink:#141414; --lh-coral:#FF6842; --lh-green:#4B8151; --lh-green-dark:#2C4D30;
+    --lh-peach-xl:#FFF5EE; --lh-peach-l:#F5EEE8; --lh-peach:#FFEDE6; --lh-rose:#FFE2D7;
+    --lh-yellow:#FFB972; --lh-grey-xl:#F5F7FA; --lh-grey-l:#EDEDED;
+    --lh-serif:"Lora", Georgia, serif; --lh-sans:"Epilogue", Arial, sans-serif;
+    --lh-shadow-soft:0 0 11px rgba(0,0,0,.08); --lh-radius-card:4.8px;
+    --note:#3D2DB8; /* anotaciones del mockup, no es marca */
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:var(--lh-sans);font-size:15px;line-height:23px;color:var(--lh-ink);background:var(--lh-grey-xl);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .mockup-bar{background:#111;color:#fff;font:500 12px/1.4 var(--lh-sans);text-align:center;padding:7px 16px}
+  .heading{font-family:var(--lh-serif);font-weight:500;margin:0}
+
+  .toolbar{max-width:900px;margin:20px auto 0;padding:0 24px;display:flex;justify-content:flex-end}
+  .toolbar button{font:500 14px/1.5 var(--lh-sans);background:var(--lh-ink);color:#fff;border:0;border-radius:50px;padding:7px 20px 8px;cursor:pointer}
+
+  /* Hojas A4 */
+  .sheet{background:#fff;max-width:900px;margin:20px auto;padding:56px 64px;box-shadow:var(--lh-shadow-soft);border-radius:6px}
+  .sheet h2{font-size:28px;line-height:34px;margin:0 0 6px}
+  .sheet h3{font-size:18px;line-height:24px;font-weight:600;margin:28px 0 8px}
+  .sheet p{margin:0 0 12px}
+  .kicker{font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--lh-coral);margin-bottom:8px;display:block}
+  .lead{font-size:17px;line-height:26px;color:#3c3c3c;margin:8px 0 24px}
+
+  /* Portada */
+  .cover{background:var(--lh-peach-xl);min-height:620px;display:flex;flex-direction:column;justify-content:space-between}
+  .cover img.logo{height:22px;align-self:flex-start}
+  .cover h1{font-size:46px;line-height:55px;color:var(--lh-coral);max-width:620px}
+  .cover .sub{font-size:20px;line-height:30px;font-weight:500;max-width:600px;margin:18px 0 0}
+  .cover .who{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+  .cover .who span{background:#fff;border-radius:800px;padding:4px 12px 3px;font-size:13px;font-weight:500}
+  .cover .foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:13px;color:#555;gap:16px;flex-wrap:wrap}
+
+  /* Índice */
+  .toc{list-style:none;padding:0;margin:20px 0 0;counter-reset:t}
+  .toc li{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--lh-grey-l);counter-increment:t;font-size:16px}
+  .toc li::before{content:counter(t);font-family:var(--lh-serif);color:var(--lh-coral);font-size:20px;width:24px}
+  .toc a{text-decoration:none;font-weight:500}
+
+  /* Bloques */
+  .pitch{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0 8px}
+  .pitch div{background:var(--lh-peach-xl);border-radius:var(--lh-radius-card);padding:18px}
+  .pitch b{display:block;font-family:var(--lh-serif);font-weight:500;font-size:18px;line-height:24px;margin-bottom:6px}
+  .say{border-left:3px solid var(--lh-coral);background:var(--lh-peach-xl);padding:14px 18px;font-size:16px;line-height:25px;margin:16px 0}
+  .say small{display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--lh-coral);margin-bottom:4px}
+  .auth{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0 16px}
+  .auth th,.auth td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--lh-grey-l);vertical-align:top}
+  .auth th{font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:#777;border-bottom:2px solid var(--lh-ink)}
+
+  .path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 18px}
+  .path span{background:var(--lh-grey-xl);border-radius:800px;padding:5px 12px 4px;font-size:14px;font-weight:500}
+  .path span.last{background:var(--lh-coral);color:#fff}
+  .path i{font-style:normal;color:#8a8a8a}
+
+  .steps{list-style:none;padding:0;margin:16px 0 0;counter-reset:s}
+  .steps > li{display:grid;grid-template-columns:44px 1fr;gap:6px 14px;padding:18px 0;border-top:1px solid var(--lh-grey-l);counter-increment:s}
+  .steps > li::before{content:counter(s);grid-row:span 3;width:36px;height:36px;border-radius:50%;background:var(--lh-peach);color:var(--lh-coral);font-family:var(--lh-serif);font-size:18px;display:flex;align-items:center;justify-content:center}
+  .steps > li > *{grid-column:2}
+  .steps b{font-size:16px}
+  .steps p{margin:0}
+  .tip{font-size:13px;color:#555}
+  .tip::before{content:"Consejo: ";font-weight:600;color:var(--lh-green-dark)}
+
+  .shot{background:#E5E5E5;border:1.5px dashed #b9b9b9;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#5c5c5c;font-size:13px;line-height:19px;padding:16px;min-height:200px;margin:10px 0 4px}
+  .shot b{font-size:14px;color:#3c3c3c;margin-bottom:4px}
+  .shot.small{min-height:150px}
+  .shots-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .shots-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .shots-3 .shot{min-height:260px}
+
+  .tbc{display:inline-block;border:1.5px dashed var(--note);color:var(--note);font-size:12px;font-weight:600;padding:2px 9px;border-radius:800px;margin:0 0 10px}
+  .soon{display:inline-block;background:#FFE9D2;color:#7a4a12;font-size:12px;font-weight:600;padding:3px 10px;border-radius:800px;margin-bottom:10px}
+  .status{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+  .status div{border:1px solid var(--lh-grey-l);border-radius:6px;padding:12px 14px;font-size:13px;line-height:19px}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:1;padding:5px 10px;border-radius:800px;margin-bottom:8px}
+  .badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .b-ok{background:#E4EFE5;color:var(--lh-green-dark)}
+  .b-pend{background:#FFE9D2;color:#7a4a12}
+  .b-err{background:var(--lh-rose);color:#B23A1C}
+
+  .faq dt{font-weight:600;margin-top:14px}
+  .faq dd{margin:4px 0 0}
+
+  /* Lista de capturas (EN) */
+  .shotlist{width:100%;border-collapse:collapse;font-size:13px;line-height:19px;margin-top:14px}
+  .shotlist th,.shotlist td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--lh-grey-l);vertical-align:top}
+  .shotlist th{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:#777;border-bottom:2px solid var(--lh-ink)}
+  .shotlist td:first-child{font-family:var(--lh-serif);color:var(--lh-coral);font-size:16px;width:34px}
+  .shotlist .grp td{background:var(--lh-peach-xl);font-family:var(--lh-sans);color:var(--lh-ink);font-weight:600;font-size:13px}
+
+  .notes{max-width:900px;margin:20px auto 40px;background:#F4F3FB;border-top:3px solid var(--note);padding:24px 28px;font-size:14px;line-height:21px;border-radius:0 0 6px 6px}
+  .notes h4{margin:0 0 10px;font-size:15px;color:var(--note)}
+  .notes ul{margin:0;padding-left:18px}
+  .notes li{margin-bottom:6px}
+
+  @media (max-width: 760px){
+    .sheet{padding:32px 20px;margin:12px}
+    .cover{min-height:480px}
+    .cover h1{font-size:32px;line-height:40px}
+    .pitch,.shots-2,.shots-3,.status{grid-template-columns:1fr}
+    .shotlist, .shotlist tbody, .shotlist tr, .shotlist td{display:block;width:100%}
+    .shotlist thead{display:none}
+    .shotlist td{border-bottom:0;padding:3px 10px}
+    .shotlist tr{border-bottom:1px solid var(--lh-grey-l);padding:8px 0}
+    .shotlist .grp td{width:100%;padding:8px 10px}
+    .shotlist td:nth-child(4),.shotlist td:nth-child(5){display:inline-block;width:auto;font-size:12px;color:#555}
+    .shotlist td:nth-child(4)::before{content:"LH "}
+    .shotlist td:nth-child(5)::before{content:"SM "}
+  }
+
+  /* Exportar a PDF */
+  @page{size:A4;margin:14mm}
+  @media print{
+    body{background:#fff;font-size:12.5px;line-height:19px}
+    .toolbar,.notes{display:none}
+    .mockup-bar{font-size:9px;padding:4px}
+    .sheet{box-shadow:none;margin:0;max-width:none;padding:0 0 10mm;border-radius:0;page-break-after:always;break-after:page}
+    .sheet:last-of-type{page-break-after:auto;break-after:auto}
+    .cover{min-height:250mm;padding:16mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .pitch div,.say,.shot,.path span,.badge,.shotlist .grp td{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .steps > li,.shot,.status div,.faq dt,.faq dd,tr{break-inside:avoid}
+    a{text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-bar">Propuesta de Chekin para Little Hotelier · Mockup, no publicado</div>
+
+<div class="toolbar"><button type="button" onclick="window.print()">Guardar como PDF</button></div>
+
+<!-- ================= PORTADA ================= -->
+<section class="sheet cover">
+  <img class="logo" src="https://www.littlehotelier.com/wp-content/themes/littlehotelier/dist/images/lh_h_black_8cd6c5b3.svg" alt="Little Hotelier by SiteMinder" onerror="this.replaceWith(Object.assign(document.createElement('strong'),{textContent:'LITTLE HOTELIER'}))">
+  <div>
+    <span class="kicker">Guest Engagement · España</span>
+    <h1 class="heading">Registro de viajeros con Guest Engagement</h1>
+    <p class="sub">Guía para ventas, soporte y demos: dónde está, cómo se configura, qué ve el huésped y qué pasa después.</p>
+    <div class="who"><span>Ventas</span><span>Soporte</span><span>Onboarding</span><span>Demos</span></div>
+  </div>
+  <div class="foot"><span>Versión 0.1 · Octubre 2026 · Uso interno</span><span>Registro de viajeros powered by Chekin</span></div>
+</section>
+
+<!-- ================= ÍNDICE + PITCH ================= -->
+<section class="sheet">
+  <h2 class="heading">Contenido</h2>
+  <ol class="toc">
+    <li><a href="#s1">En 30 segundos</a></li>
+    <li><a href="#s2">Dónde está el módulo</a></li>
+    <li><a href="#s3">Configuración paso a paso</a></li>
+    <li><a href="#s4">Qué ve el huésped</a></li>
+    <li><a href="#s5">Qué pasa después</a></li>
+    <li><a href="#s6">Próximamente: encuesta del INE</a></li>
+    <li><a href="#s7">Preguntas de clientes</a></li>
+    <li><a href="#s8">Screenshots we need from SiteMinder</a></li>
+  </ol>
+
+  <h3 id="s1" style="margin-top:40px">1. En 30 segundos</h3>
+  <p>Todos los alojamientos de España tienen que comunicar los datos de cada huésped a las autoridades en las 24 horas siguientes a su entrada (Real Decreto 933/2021). Guest Engagement lo hace solo.</p>
+  <div class="pitch">
+    <div><b>El huésped completa el check-in online</b>Completa sus datos, escanea su documento y firma desde el móvil, antes de llegar.</div>
+    <div><b>Los datos se reportan a la autoridad</b>De forma automática, en tiempo y forma: SES.Hospedajes, Mossos d'Esquadra o Ertzaintza, según dónde esté el alojamiento. Dentro de las 24 horas.</div>
+    <div><b>Los datos quedan almacenados</b>Online, durante el tiempo que exige la ley. Se configura una vez por alojamiento.</div>
+  </div>
+  <div class="say"><small>Frase para la demo</small>"Little Hotelier cumple con la legalidad: tu huésped completa el check-in online y Little Hotelier reporta el parte de viajeros a SES.Hospedajes de forma automática, en tiempo y forma. Lo configuras una vez y te olvidas."</div>
+
+  <table class="auth">
+    <thead><tr><th>Dónde está el alojamiento</th><th>A quién se envían los datos</th></tr></thead>
+    <tbody>
+      <tr><td>Mayor parte de España</td><td><b>SES.Hospedajes</b> (Ministerio del Interior)</td></tr>
+      <tr><td>Cataluña</td><td><b>Mossos d'Esquadra</b></td></tr>
+      <tr><td>País Vasco</td><td><b>Ertzaintza</b></td></tr>
+    </tbody>
+  </table>
+  <p class="tip">Usa las palabras del cliente: "registro de viajeros", "parte de viajeros", "SES.Hospedajes", "check-in online". No "compliance" ni "formulario de llegada".</p>
+</section>
+
+<!-- ================= DÓNDE ESTÁ ================= -->
+<section class="sheet" id="s2">
+  <span class="kicker">2</span>
+  <h2 class="heading">Dónde está el módulo</h2>
+  <p class="lead">Hoy la configuración del registro de viajeros está dentro de los ajustes del check-in.</p>
+  <div class="path"><span>Guests</span><i>›</i><span>Guest engagement</span><i>›</i><span>Check-in</span><i>›</i><span>Settings</span><i>›</i><span class="last">Compliance check-in form</span></div>
+  <p style="font-size:13px;color:#555;margin-top:-6px">Nombres tal como aparecen hoy en el panel (en inglés).</p>
+  <span class="tbc">A confirmar: nombres del menú si el panel está en español</span>
+  <!-- A CONFIRMAR: nombres exactos de los menús del panel en español -->
+  <div class="shots-2">
+    <figure style="margin:8px 0 0"><img src="img/lh-guests-page.png" alt="Captura 1 · Guests: el acceso a Guest engagement está en la columna de la izquierda" style="display:block;width:100%;border:1px solid #EDEDED;border-radius:8px"><figcaption style="margin-top:6px;font-size:13px;color:#555">Captura 1 · Guests: el acceso a Guest engagement está en la columna de la izquierda</figcaption></figure>
+    <figure style="margin:8px 0 0"><img src="img/lh-ge-checkin-settings-select-form.png" alt="Captura 2 · Check-in &gt; Settings: elegir "Compliance check-in form"" style="display:block;width:100%;border:1px solid #EDEDED;border-radius:8px"><figcaption style="margin-top:6px;font-size:13px;color:#555">Captura 2 · Check-in &gt; Settings: elegir "Compliance check-in form"</figcaption></figure>
+  </div>
+  <p class="tip" style="margin-top:14px">En una demo, ve directo a la ruta. Son 4 clics y el cliente no los encontrará solo la primera vez.</p>
+  <p style="font-size:13px;color:#555">Propuesta en curso: un ítem "Registro de viajeros" en el primer nivel de Guest Engagement. Si sale, esta página cambia.</p>
+</section>
+
+<!-- ================= CONFIGURACIÓN ================= -->
+<section class="sheet" id="s3">
+  <span class="kicker">3</span>
+  <h2 class="heading">Configuración paso a paso</h2>
+  <p class="lead">Se hace una vez por alojamiento. Después, cada check-in online se envía solo.</p>
+  <ol class="steps">
+    <li>
+      <b>Abre el formulario de cumplimiento</b>
+      <p>En Check-in &gt; Settings, elige <b>Compliance check-in form</b> ("Automatically submit guest details to the relevant police authority upon check-in") y pulsa <b>Save changes</b>.</p>
+      <figure style="margin:8px 0 0"><img src="img/lh-ge-checkin-settings-select-form.png" alt="Captura 3 · Selección del formulario de cumplimiento" style="display:block;width:100%;border:1px solid #EDEDED;border-radius:8px"><figcaption style="margin-top:6px;font-size:13px;color:#555">Captura 3 · Selección del formulario de cumplimiento</figcaption></figure>
+    </li>
+    <li>
+      <b>Elige la autoridad</b>
+      <p>SES.Hospedajes, Mossos d'Esquadra o Ertzaintza, según la comunidad del alojamiento.</p>
+      <div class="shot small"><b>Captura 4</b>Formulario de conexión: selector de autoridad (SES.Hospedajes / Mossos d'Esquadra / Ertzaintza)</div>
+    </li>
+    <li>
+      <b>Conecta con SES.Hospedajes</b>
+      <p>Rellena los datos que pide el formulario para conectar el alojamiento con la autoridad.</p>
+      <span class="tbc">A confirmar: campos exactos de cada autoridad</span>
+      <!-- A CONFIRMAR: campos que pide el formulario para SES.Hospedajes, Mossos d'Esquadra y Ertzaintza -->
+      <p style="font-size:13px;color:#555">Hoy pide la información del alojamiento (Property name, Commercial name, Country, Province, City, Owner fiscal code) y cómo firma el huésped (Auto signature recomendada).</p>
+      <figure style="margin:8px 0 0"><img src="img/lh-ge-compliance-connection.png" alt="Captura 5 · Compliance check-in form: Authority connection con la información del alojamiento" style="display:block;width:100%;border:1px solid #EDEDED;border-radius:8px"><figcaption style="margin-top:6px;font-size:13px;color:#555">Captura 5 · Compliance check-in form: Authority connection con la información del alojamiento</figcaption></figure>
+      <div class="shots-2">
+        <div class="shot small"><b>Captura 6</b>Formulario de conexión con los Mossos d'Esquadra</div>
+        <div class="shot small"><b>Captura 7</b>Formulario de conexión con la Ertzaintza</div>
+      </div>
+    </li>
+    <li>
+      <b>Guarda y comprueba la conexión</b>
+      <p>Al guardar, la conexión queda activa para ese alojamiento. Si el cliente tiene varios alojamientos, repite los pasos 2 a 4 en cada uno.</p>
+      <figure style="margin:8px 0 0"><div style="height:150px;overflow:hidden;border:1px solid #EDEDED;border-radius:8px"><img src="img/lh-ge-compliance-connection.png" alt="" style="display:block;width:240%;margin:-26% 0 0 -26%"></div><figcaption style="margin-top:6px;font-size:13px;color:#555">Captura 8 · Connection: Status "Active" cuando la conexión está hecha</figcaption></figure>
+      <p class="tip">Haz una reserva de prueba y completa tú el check-in online para enseñar el recorrido entero.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= QUÉ VE EL HUÉSPED ================= -->
+<section class="sheet" id="s4">
+  <span class="kicker">4</span>
+  <h2 class="heading">Qué ve el huésped</h2>
+  <p class="lead">Recibe el enlace al check-in online antes de llegar y lo completa desde el móvil.</p>
+  <div class="shots-3">
+    <div class="shot"><b>Captura 9</b>Email al huésped con el enlace al check-in online</div>
+    <div class="shot"><b>Captura 10</b>Check-in online: datos personales</div>
+    <div class="shot"><b>Captura 11</b>Check-in online: subida del documento de identidad</div>
+    <div class="shot"><b>Captura 12</b>Check-in online: firma digital</div>
+    <div class="shot"><b>Captura 13</b>Pantalla de confirmación del check-in</div>
+    <div class="shot"><b>Captura 14</b>Check-in online en otro idioma (ej. inglés)</div>
+  </div>
+  <h3>Lo que conviene contar</h3>
+  <ul>
+    <li>Lo hace desde el enlace que recibe, cuando le viene bien.</li>
+    <li>Hay que comunicar los datos de cada huésped, no solo del titular de la reserva.</li>
+    <li>Al llegar, la recepción solo entrega la llave.</li>
+  </ul>
+</section>
+
+<!-- ================= QUÉ PASA DESPUÉS ================= -->
+<section class="sheet" id="s5">
+  <span class="kicker">5</span>
+  <h2 class="heading">Qué pasa después</h2>
+  <p class="lead">Cuando el huésped termina el check-in online, sus datos se reportan automáticamente a la autoridad dentro de las 24 horas siguientes a su entrada y quedan almacenados online durante el tiempo que exige la ley.</p>
+  <div class="shot"><b>Captura 15</b>Dónde ve el hotel los registros enviados (listado o detalle de la reserva)</div>
+
+  <h3>Estado del envío</h3>
+  <span class="tbc">A confirmar con el equipo técnico de Chekin si el SDK lo expone</span>
+  <!-- A CONFIRMAR con el equipo técnico de Chekin si el SDK lo expone -->
+  <div class="status">
+    <div><span class="badge b-ok">Enviado</span><br>Los datos llegaron a la autoridad.</div>
+    <div><span class="badge b-pend">Pendiente</span><br>El huésped aún no ha hecho el check-in online.</div>
+    <div><span class="badge b-err">Error</span><br>La autoridad no aceptó el envío. Hay que revisar los datos.</div>
+  </div>
+
+  <h3>Si algo falla</h3>
+  <ul>
+    <li><b>El huésped no hizo el check-in online:</b> reenvía el enlace o pídele que lo complete al llegar.</li>
+    <li><b>El envío da error:</b> revisa los datos del huésped y de la conexión. Si sigue fallando, escala a soporte.</li>
+  </ul>
+  <span class="tbc">A confirmar: proceso de escalado de errores entre SiteMinder y Chekin</span>
+  <!-- A CONFIRMAR: cómo se escalan los errores de envío (SiteMinder soporte → Chekin) -->
+</section>
+
+<!-- ================= INE ================= -->
+<section class="sheet" id="s6">
+  <span class="kicker">6</span>
+  <h2 class="heading">Próximamente: encuesta de ocupación del INE</h2>
+  <span class="soon">Próximamente</span>
+  <!-- A CONFIRMAR: fecha de salida de INE apartamentos a producción. Hoteles en piloto. No activar clientes hasta confirmarlo. -->
+  <p class="lead">Solo para alojamientos que el INE selecciona en su muestra. No es 100% automático: se envía cuando el INE lo pide.</p>
+  <ol class="steps">
+    <li><b>Configuración única por alojamiento</b><p>Tipo de alojamiento, categoría, número de apartamentos, plazas totales, razón social, NIF, número de registro turístico, dirección y persona de contacto. Este paso no envía nada al INE.</p></li>
+    <li><b>Cada vez que el INE pide un informe</b><p>El hotel elige propiedad y mes, introduce el número de pedido y el código de control que el INE envía por carta o email, y añade el personal de ese mes (no remunerado, fijo y eventual). Se genera el informe y se envía.</p></li>
+  </ol>
+  <h3>Dudas típicas</h3>
+  <dl class="faq">
+    <dt>"Categoría": ¿qué son las llaves?</dt>
+    <dd>Los apartamentos turísticos se clasifican por llaves, de 0 a 5, como las estrellas en hoteles. La asigna el Registro de Turismo autonómico y aparece en el certificado de inscripción.</dd>
+    <dt>"Plazas totales": ¿cómo se cuentan?</dt>
+    <dd>Camas fijas según el registro o licencia. Una cama doble cuenta como 2. Sofás cama y camas supletorias no cuentan.</dd>
+    <dt>¿Hay que poner el número de pedido cada mes?</dt>
+    <dd>Se introduce en cada informe, pero suele mantenerse mientras el alojamiento siga en la muestra.</dd>
+    <dt>¿Y en Galicia?</dt>
+    <dd>Galicia usa otro sistema: Turespazo.</dd>
+  </dl>
+  <figure style="margin:16px 0 0"><img src="img/ge-statistics-connection-ine.png" alt="Guest Engagement: Statistics connection, selector de región (INE apartamentos, INE hoteles, Turespazo Galicia)" style="display:block;width:100%;max-width:640px;border:1px solid #EDEDED;border-radius:8px"><figcaption style="margin-top:6px;font-size:13px;color:#555">Captura 16 · Pantalla real de Guest Engagement (cuenta de prueba): Statistics connection. Falta la versión en español.</figcaption></figure>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sheet" id="s7">
+  <span class="kicker">7</span>
+  <h2 class="heading">Preguntas de clientes</h2>
+  <dl class="faq">
+    <dt>¿Envía Guest Engagement los partes de viajeros a la policía?</dt>
+    <dd>Sí, en España. A SES.Hospedajes, a los Mossos d'Esquadra en Cataluña o a la Ertzaintza en el País Vasco, según dónde esté el alojamiento.</dd>
+    <dt>¿Quién tiene que hacer el registro de viajeros?</dt>
+    <dd>Todos los alojamientos: hoteles, hostales, pensiones, casas rurales, apartamentos y viviendas turísticas (Real Decreto 933/2021).</dd>
+    <dt>¿Cuánto tiempo hay para enviar los datos?</dt>
+    <dd>24 horas desde la entrada del huésped.</dd>
+    <dt>¿Hay que configurarlo con cada reserva?</dt>
+    <dd>No. Una vez por alojamiento.</dd>
+    <dt>Tengo alojamientos en Barcelona y en Madrid. ¿Funciona?</dt>
+    <dd>Sí. Cada alojamiento se conecta a su autoridad: Barcelona a los Mossos d'Esquadra, Madrid a SES.Hospedajes.</dd>
+    <dt>¿Dónde quedan los datos?</dt>
+    <dd>Almacenados online durante el tiempo que exige la ley.</dd>
+    <dt>¿Está en el plan Basics?</dt>
+    <dd>Guest Engagement es un add-on del plan Pro.</dd>
+    <!-- A CONFIRMAR: disponibilidad de Guest Engagement por plan (según la web de precios, solo Pro) -->
+  </dl>
+  <p class="tip" style="margin-top:20px">No hables de importes de multas ni de fechas de facturación electrónica. Si preguntan, remite a la información oficial.</p>
+</section>
+
+<!-- ================= LISTA DE CAPTURAS (EN, para Tom) ================= -->
+<section class="sheet" id="s8" lang="en">
+  <span class="kicker">8 · For Tom</span>
+  <h2 class="heading">Screenshots we need from SiteMinder</h2>
+  <p class="lead">To finish this kit we need the screenshots below, from a Spanish test property, with the dashboard in Spanish. Please send them for Little Hotelier and, where the screen is different, for SiteMinder too. Dummy guest data only.</p>
+  <table class="shotlist">
+    <thead><tr><th>#</th><th>Screen</th><th>State / what should be visible</th><th>LH</th><th>SM</th></tr></thead>
+    <tbody>
+      <tr class="grp"><td colspan="5">Where the module is</td></tr>
+      <tr><td>1</td><td>Main dashboard, Guests menu open</td><td>Guest Engagement visible in the menu</td><td>✓</td><td>✓</td></tr>
+      <tr><td>2</td><td>Guest Engagement &gt; Check-in &gt; Settings</td><td>Entry point to the compliance form visible</td><td>✓</td><td>✓</td></tr>
+      <tr class="grp"><td colspan="5">Setup</td></tr>
+      <tr><td>3</td><td>Check-in settings</td><td>Online check-in switched on</td><td>✓</td><td>✓</td></tr>
+      <tr><td>4</td><td>Compliance form: authority selector</td><td>Dropdown open showing SES.Hospedajes, Mossos d'Esquadra, Ertzaintza</td><td>✓</td><td>✓</td></tr>
+      <tr><td>5</td><td>SES.Hospedajes connection form</td><td>All fields filled in with test data</td><td>✓</td><td>✓</td></tr>
+      <tr><td>6</td><td>Mossos d'Esquadra connection form</td><td>All fields visible</td><td>✓</td><td>–</td></tr>
+      <tr><td>7</td><td>Ertzaintza connection form</td><td>All fields visible</td><td>✓</td><td>–</td></tr>
+      <tr><td>8</td><td>After saving</td><td>Confirmation message or "connected" status</td><td>✓</td><td>✓</td></tr>
+      <tr class="grp"><td colspan="5">Guest view (mobile)</td></tr>
+      <tr><td>9</td><td>Guest email with online check-in link</td><td>Spanish version</td><td>✓</td><td>✓</td></tr>
+      <tr><td>10</td><td>Online check-in: personal details</td><td>Mobile, Spanish</td><td>✓</td><td>–</td></tr>
+      <tr><td>11</td><td>Online check-in: ID scan</td><td>Mobile, document being scanned</td><td>✓</td><td>–</td></tr>
+      <tr><td>12</td><td>Online check-in: digital signature</td><td>Mobile, signature drawn</td><td>✓</td><td>–</td></tr>
+      <tr><td>13</td><td>Online check-in: confirmation</td><td>Mobile, final screen</td><td>✓</td><td>–</td></tr>
+      <tr><td>14</td><td>Online check-in in English</td><td>Any step, to show languages</td><td>✓</td><td>–</td></tr>
+      <tr class="grp"><td colspan="5">After check-in</td></tr>
+      <tr><td>15</td><td>Where the hotel sees sent registrations</td><td>List or reservation detail with at least one sent guest</td><td>✓</td><td>✓</td></tr>
+      <tr><td>16</td><td>INE setup form</td><td>Fields visible (Region, Housing category, Total places…). Once live, without the "Beta" label</td><td>✓</td><td>✓</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:#555;margin-top:14px">"–" means we can reuse the Little Hotelier screenshot because the guest flow is the same. Tell us if that is not the case.</p>
+  <p style="font-size:13px;color:#555">Also helpful: the exact Spanish names of the dashboard menus, and whether the reservation shows a sent / pending / error status.</p>
+</section>
+
+<section class="notes">
+  <h4>Notas</h4>
+  <ul>
+    <li><strong>Bloqueado parcialmente:</strong> faltan las capturas. Cada hueco gris tiene número y nombre; al llegar las capturas a <code>reference/screenshots/</code> se cambian una a una.</li>
+    <li><strong>Idioma:</strong> la guía va en español (para ventas, soporte y demos en España). La lista de capturas va en inglés porque se le envía a Tom.</li>
+    <li><strong>PDF:</strong> botón "Guardar como PDF" arriba. Cada sección sale en una página A4.</li>
+    <li><strong>A confirmar:</strong> nombres del menú en español, campos de cada formulario de conexión, estado del envío en la reserva, escalado de errores, fecha de INE apartamentos y disponibilidad de Guest Engagement por plan.</li>
+  </ul>
+</section>
+
+</body>
+</html>

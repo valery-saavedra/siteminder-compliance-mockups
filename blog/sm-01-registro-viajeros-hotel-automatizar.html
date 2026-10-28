@@ -1,0 +1,70 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>Registro de viajeros en hoteles: cómo automatizar SES.Hospedajes (borrador)</title><style>body{margin:0;background:#F5F5F5;font:17px/1.65 Georgia,serif;color:#222}
+.bar{background:#111;color:#fff;font:500 12px/1.4 Arial,sans-serif;text-align:center;padding:7px 16px}
+.meta{max-width:760px;margin:24px auto 0;padding:14px 18px;background:#F4F3FB;border-left:3px solid #3D2DB8;font:13px/1.5 Arial,sans-serif;color:#333}
+article{max-width:760px;margin:16px auto 60px;background:#fff;padding:48px 56px;border-radius:6px}
+h1{font:700 32px/1.25 Arial,sans-serif;margin:0 0 20px}h2{font:700 22px/1.3 Arial,sans-serif;margin:34px 0 10px}
+table{border-collapse:collapse;width:100%;font:15px/1.4 Arial,sans-serif}td,th{border:1px solid #ddd;padding:8px;text-align:left}
+a{color:#1a5fd0}@media(max-width:640px){article{padding:24px 18px;margin:0}}</style></head><body><div class="bar">Propuesta de Chekin para SiteMinder · Borrador de blog, no publicado</div><div class="meta"><b>SEO title:</b> Registro de viajeros en hoteles: cómo automatizar SES.Hospedajes<br><b>Meta description:</b> Cómo cumplir con el registro de viajeros en un hotel sin entrar cada día en SES.Hospedajes: check-in online, envío automático y datos almacenados online.<br><b>Slug:</b> /es/r/registro-viajeros-hotel/ · <b>Keyword:</b> registro de viajeros hotel</div><article><h1>Registro de viajeros en hoteles: cómo automatizar SES.Hospedajes</h1>
+<p>En un hotel con 40, 80 o 120 habitaciones, el registro de viajeros no es una tarea más: es una cola. Cada huésped que entra tiene que quedar comunicado a las autoridades en 24 horas, también los domingos, también en agosto, también cuando llega un grupo de 30 personas a la vez.</p>
+<p>Muchos hoteles siguen resolviéndolo con una persona de recepción que copia documentos y entra en SES.Hospedajes varias veces al día. Funciona hasta que falla. En este artículo te contamos dónde falla y cómo automatizarlo sin cambiar tu forma de trabajar.</p>
+<h2>La obligación, en resumen</h2>
+<p>El <strong>Real Decreto 933/2021</strong> obliga a todos los alojamientos a comunicar los datos de sus huéspedes a las autoridades. Aplica a hoteles, hostales, pensiones, casas rurales, apartamentos y viviendas turísticas.</p>
+<ul>
+<li><strong>Dónde:</strong> en la mayor parte de España, en <strong>SES.Hospedajes</strong>, la plataforma del Ministerio del Interior. En Cataluña, a los <strong>Mossos d'Esquadra</strong>. En el País Vasco, a la <strong>Ertzaintza</strong>.</li>
+<li><strong>Cuándo:</strong> en las <strong>24 horas</strong> siguientes a la entrada del huésped.</li>
+<li><strong>De quién:</strong> de cada persona alojada, no solo de quien hizo la reserva.</li>
+</ul>
+<h2>Por qué en un hotel con volumen se complica</h2>
+<p>En un hotel pequeño, el problema es acordarse. En un hotel con más habitaciones, el problema es el volumen y los turnos.</p>
+<p><strong>Las horas punta de recepción.</strong> Entre las 14:00 y las 20:00 se concentran las llegadas. Pedir el documento, copiar los datos y pedir la firma a cada huésped alarga la cola justo cuando el equipo tiene menos tiempo.</p>
+<p><strong>Los grupos.</strong> Un autobús de 30 personas son 30 registros. Si el guía entrega una lista incompleta, alguien tiene que perseguir los datos que faltan antes de que pase el plazo.</p>
+<p><strong>Los cambios de turno.</strong> Lo que el turno de tarde no termina pasa al de noche, y lo que el de noche no envía llega a la mañana con el plazo casi agotado. Cada traspaso es una oportunidad de que un parte se quede sin enviar.</p>
+<p><strong>Los errores al copiar.</strong> Un número de documento con una letra cambiada es un registro mal enviado. Cuantos más registros se copian a mano, más errores entran.</p>
+<p><strong>El archivo.</strong> Los datos tienen que conservarse el tiempo que exige la ley. Fichas en papel o ficheros sueltos en un ordenador de recepción no son un buen archivo.</p>
+<h2>Qué significa automatizar el registro de viajeros</h2>
+<p>Automatizar no es solo "enviar el fichero más rápido". Es quitar a recepción de en medio en las tres partes del proceso:</p>
+<ol>
+<li><strong>Recoger los datos.</strong> Que el huésped los dé antes de llegar, desde su móvil.</li>
+<li><strong>Enviarlos.</strong> Que salgan solos hacia la autoridad que toca, sin entrar en ningún portal.</li>
+<li><strong>Guardarlos.</strong> Que queden almacenados online, ordenados y disponibles si hay una inspección.</li>
+</ol>
+<p>Si solo automatizas una de las tres, el cuello de botella se mueve, pero no desaparece.</p>
+<h2>El check-in online como punto de partida</h2>
+<p>Todo empieza en el check-in online. Antes de la llegada, el huésped recibe un enlace y completa sus datos en unos segundos:</p>
+<ul>
+<li><strong>Desde cualquier dispositivo y sin descargar ninguna app.</strong> Lo abre desde el email, en el móvil o en el ordenador.</li>
+<li><strong>Escanea su documento de identidad.</strong> Con una foto, el formulario se rellena solo, sin errores al copiar. </li>
+<li><strong>Firma desde el móvil.</strong> Sin imprimir fichas.</li>
+<li><strong>El formulario pide los datos que exige la ley.</strong> Ni recepción ni el huésped tienen que saber qué campos son obligatorios.</li>
+</ul>
+<p>Cuando el huésped llega, recepción solo entrega la llave. Y en los grupos, cada persona completa su parte, en lugar de depender de una lista.</p>
+<h2>Cómo lo hace SiteMinder</h2>
+<p>Con <strong>Guest Engagement</strong> de SiteMinder, el registro de viajeros se hace solo:</p>
+<ol>
+<li><strong>Tu huésped completa el check-in online</strong> antes de llegar: completa sus datos, escanea su documento y firma.</li>
+<li><strong>Los datos se envían de forma automática, en tiempo y forma,</strong> a SES.Hospedajes, a los Mossos d'Esquadra o a la Ertzaintza, según dónde esté tu hotel.</li>
+<li><strong>Los datos de los huéspedes quedan almacenados online</strong> durante el tiempo que exige la ley.</li>
+</ol>
+<p>La conexión con la autoridad se configura una vez por alojamiento. A partir de ahí, nadie del equipo tiene que entrar en SES.Hospedajes. Y como Guest Engagement forma parte de la plataforma de SiteMinder, el check-in online sale de la misma reserva que ya gestionas: no hay que pasar datos de un sistema a otro.</p>
+<h2>Qué gana tu equipo de recepción</h2>
+<ul>
+<li><strong>Menos cola en las horas punta.</strong> Los datos llegan antes que el huésped.</li>
+<li><strong>Sin traspasos entre turnos.</strong> No queda nada "pendiente de enviar" para el siguiente.</li>
+<li><strong>Sin errores al copiar documentos.</strong> Los datos salen del documento escaneado.</li>
+<li><strong>Un archivo ordenado.</strong> Si te los piden, los tienes disponibles.</li>
+<li><strong>Más tiempo para el huésped.</strong> Recepción vuelve a dedicarse a recibir.</li>
+</ul>
+<h2>Preguntas frecuentes</h2>
+<p><strong>¿El registro de viajeros aplica igual a un hotel de 100 habitaciones que a una casa rural?</strong></p>
+<p>Sí. El Real Decreto 933/2021 aplica a todos los alojamientos, sin importar su tamaño.</p>
+<p><strong>¿Tengo que registrar a todos los huéspedes de un grupo?</strong></p>
+<p>Sí, a cada persona alojada. Con el check-in online, cada huésped completa sus propios datos.</p>
+<p><strong>¿Qué pasa si mi hotel está en Barcelona o en Bilbao?</strong></p>
+<p>La obligación es la misma, pero la plataforma cambia: los Mossos d'Esquadra en Cataluña y la Ertzaintza en el País Vasco. Guest Engagement envía los datos a la que corresponde.</p>
+<p><strong>¿Tengo que entrar en SES.Hospedajes cada día?</strong></p>
+<p>Si lo haces a mano, sí. Con Guest Engagement, no: configuras la conexión una vez y cada check-in online se envía solo.</p>
+<p><strong>¿Cuánto tiempo se guardan los datos?</strong></p>
+<p>El tiempo que exige la ley. Con Guest Engagement quedan almacenados online durante ese plazo.</p>
+<h2>Saca el registro de viajeros de recepción</h2>
+<p>El registro de viajeros no va a desaparecer, pero sí puede dejar de ocupar a tu equipo cada día. Conecta SES.Hospedajes, Mossos o Ertzaintza a SiteMinder y evita sanciones.</p>
+<p><a href="{{URL_LANDING_CUMPLIMIENTO_SM}}">Descubre cómo funciona el registro de viajeros con SiteMinder</a> o <a href="https://www.siteminder.com/es/guest-engagement/">conoce Guest Engagement</a>.</p></article></body></html>
